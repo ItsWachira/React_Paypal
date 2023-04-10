@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Product from "./components/Product";
+import PayPalCheckout from "./components/PayPalCheckout";
+import "./App.css";
 
 function App() {
+  const [checkout, setCheckOut] = useState(false);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  
+      <div className="App">
+        <header className="App-header">
+          {checkout ? (
+            <PayPalCheckout />
+          ) : (
+            <div className="Product">
+              <button
+                className="checkout"
+                onClick={() => {
+                  setCheckOut(true);
+                }}
+              >
+                Add to Cart & Checkout
+              </button>
+              <Product />
+            </div>
+          )}
+        </header>
+     
+      </div>
+ 
   );
 }
 
